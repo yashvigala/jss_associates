@@ -5,7 +5,6 @@ import Preloader from './components/Preloader.jsx'
 import Cursor from './components/Cursor.jsx'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import Thread from './components/Thread.jsx'
 import SectionStory from './components/SectionStory.jsx'
 import SectionBuild from './components/SectionBuild.jsx'
 import SectionServices from './components/SectionServices.jsx'
@@ -30,7 +29,6 @@ export default function App() {
         <div className="bp-grid" aria-hidden="true" />
 
         <main style={{ position: 'relative' }}>
-          <Thread />
           <Hero ready={ready} />
           <SectionStory />
           <SectionBuild />
