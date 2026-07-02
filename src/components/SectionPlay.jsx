@@ -4,15 +4,16 @@ import { INTERIOR_SHOTS } from '../data/site.js'
 
 // endlesstools-style tactile board: every handed-over interior, printed as a
 // polaroid you can pick up and throw around. Springy, silly, memorable.
+// two loose rows with real breathing room — scattered, never stacked
 const SPOTS = [
-  { left: '4%', top: '12%', r: -7 },
-  { left: '16%', top: '48%', r: 5 },
-  { left: '28%', top: '8%', r: 9 },
-  { left: '40%', top: '44%', r: -4 },
-  { left: '52%', top: '10%', r: 6 },
-  { left: '64%', top: '46%', r: -8 },
-  { left: '76%', top: '12%', r: 4 },
-  { left: '68%', top: '58%', r: -3 },
+  { left: '3%', top: '9%', r: -7 },
+  { left: '15%', top: '53%', r: 5 },
+  { left: '27%', top: '7%', r: 9 },
+  { left: '39%', top: '55%', r: -4 },
+  { left: '51%', top: '9%', r: 6 },
+  { left: '63%', top: '53%', r: -8 },
+  { left: '75%', top: '7%', r: 4 },
+  { left: '85%', top: '51%', r: -3 },
 ]
 
 function Polaroid({ shot, spot, boardRef, i }) {

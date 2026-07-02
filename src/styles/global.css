@@ -1130,7 +1130,7 @@ html[data-theme='blueprint'] .bp-toggle .sw {
 }
 .polaroid {
   position: absolute;
-  width: clamp(150px, 16vw, 230px);
+  width: clamp(140px, 11.5vw, 200px);
   background: #f4efe4;
   padding: 8px 8px 34px;
   border-radius: 3px;
