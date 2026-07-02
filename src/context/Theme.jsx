@@ -11,7 +11,18 @@ export const PALETTES = {
     ground: '#57503f',
     particle: '#f0c87e',
     beacon: '#f0c87e',
-    solid: '#8f7440', // finished-building facade
+    // finished-building facade: night tower, warm windows glowing
+    facade: {
+      glassTop: '#2b2519',
+      glassBottom: '#14110c',
+      mullion: 'rgba(240, 200, 126, 0.25)',
+      win: ['#100e0a', '#171310', '#1d1812'],
+      lit: '#f6cc85',
+      litChance: 0.4,
+      parapet: '#4a3d26',
+      roof: '#161209',
+      podium: '#262016',
+    },
     additive: true,
     bloom: true,
   },
@@ -23,7 +34,18 @@ export const PALETTES = {
     ground: '#33507f',
     particle: '#cfe2ff',
     beacon: '#ffffff',
-    solid: '#3d5f96',
+    // illuminated architectural model in blues
+    facade: {
+      glassTop: '#2a4d84',
+      glassBottom: '#122543',
+      mullion: 'rgba(156, 194, 255, 0.3)',
+      win: ['#1b3660', '#16305c', '#203d6b'],
+      lit: '#e4efff',
+      litChance: 0.3,
+      parapet: '#7899cc',
+      roof: '#122543',
+      podium: '#1d3763',
+    },
     additive: true,
     bloom: true,
   },
@@ -35,7 +57,18 @@ export const PALETTES = {
     ground: '#b3a37c',
     particle: '#8a6a25',
     beacon: '#a4761f',
-    solid: '#d9c9a2', // warm sandstone facade
+    // daylight render: soft sky-glass over warm stone
+    facade: {
+      glassTop: '#d8e0dc',
+      glassBottom: '#a9bcc0',
+      mullion: 'rgba(110, 92, 55, 0.35)',
+      win: ['#c4d3d6', '#b8c9cd', '#cfdbdc'],
+      lit: '#f9f4e3',
+      litChance: 0.1,
+      parapet: '#e7ddc5',
+      roof: '#cfc3a4',
+      podium: '#d9c9a2',
+    },
     additive: false, // additive particles wash out on a light page
     bloom: false, // dark lines don't bloom — skip the pass
   },
