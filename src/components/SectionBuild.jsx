@@ -19,9 +19,10 @@ export default function SectionBuild() {
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     const idx = Math.min(3, Math.floor(v * 4))
     setPhase((p) => (p === idx ? p : idx))
+    const done = v > 0.975
     const floors = String(Math.round(v * 22)).padStart(2, '0')
     if (readoutRef.current) {
-      readoutRef.current.textContent = `${floors} / 22 floors`
+      readoutRef.current.textContent = done ? '22 / 22 — handed over' : `${floors} / 22 floors`
     }
     if (ghostRef.current) {
       ghostRef.current.textContent = floors

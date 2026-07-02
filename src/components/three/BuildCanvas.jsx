@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { buildTower } from './cityGeometry.js'
+import { buildTower, buildSolids } from './cityGeometry.js'
 import { isSoftwareGL, useOnScreen } from './perf.js'
 
 const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3)
@@ -9,7 +9,9 @@ const clamp01 = (x) => Math.min(1, Math.max(0, x))
 
 function ConstructionTower({ progress, palette }) {
   const tower = useMemo(() => buildTower(palette), [palette])
+  const solids = useMemo(() => buildSolids(), [])
   const levelRefs = useRef([])
+  const solidRefs = useRef([])
   const baseRef = useRef()
   const crownRef = useRef()
   const beaconRef = useRef()
@@ -70,6 +72,14 @@ function ConstructionTower({ progress, palette }) {
       beaconRef.current.scale.setScalar(s)
     }
 
+    // handover — the finished building solidifies over the wireframe
+    const solidOn = easeOutCubic(clamp01((p - 0.86) / 0.12))
+    for (const m of solidRefs.current) {
+      if (!m) continue
+      m.visible = solidOn > 0.001
+      m.material.opacity = solidOn * 0.97
+    }
+
     // camera choreography — rises and orbits with the build
     const theta = -0.55 + p * 2.35
     const radius = 11.2 - p * 3.1
@@ -105,6 +115,24 @@ function ConstructionTower({ progress, palette }) {
         <sphereGeometry args={[0.05, 12, 12]} />
         <meshBasicMaterial color={palette.beacon} transparent opacity={0} toneMapped={false} />
       </mesh>
+      {solids.map((b, i) => (
+        <mesh
+          key={i}
+          ref={(el) => (solidRefs.current[i] = el)}
+          position={[b.cx, b.cy, b.cz]}
+          visible={false}
+        >
+          <boxGeometry args={[b.w, b.h, b.d]} />
+          <meshLambertMaterial
+            color={palette.solid}
+            transparent
+            opacity={0}
+            polygonOffset
+            polygonOffsetFactor={1}
+            polygonOffsetUnits={1}
+          />
+        </mesh>
+      ))}
     </group>
   )
 }
@@ -123,6 +151,8 @@ export default function BuildCanvas({ progress, palette }) {
         gl={{ antialias: !soft, alpha: true, powerPreference: 'high-performance' }}
       >
         <fog attach="fog" args={[palette.fog, 11, 24]} />
+        <hemisphereLight args={['#ffffff', palette.fog, 0.95]} />
+        <directionalLight position={[6, 9, 4]} intensity={0.85} />
         <ConstructionTower progress={progress} palette={palette} />
       </Canvas>
     </div>

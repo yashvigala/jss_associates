@@ -11,6 +11,7 @@ export const PALETTES = {
     ground: '#57503f',
     particle: '#f0c87e',
     beacon: '#f0c87e',
+    solid: '#8f7440', // finished-building facade
     additive: true,
     bloom: true,
   },
@@ -22,6 +23,7 @@ export const PALETTES = {
     ground: '#33507f',
     particle: '#cfe2ff',
     beacon: '#ffffff',
+    solid: '#3d5f96',
     additive: true,
     bloom: true,
   },
@@ -33,6 +35,7 @@ export const PALETTES = {
     ground: '#b3a37c',
     particle: '#8a6a25',
     beacon: '#a4761f',
+    solid: '#d9c9a2', // warm sandstone facade
     additive: false, // additive particles wash out on a light page
     bloom: false, // dark lines don't bloom — skip the pass
   },

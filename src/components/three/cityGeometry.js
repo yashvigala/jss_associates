@@ -201,6 +201,35 @@ export function buildNeighbors(palette) {
   }
 }
 
+// Solid volumes matching the tower — faded in once construction completes,
+// turning the line drawing into a finished building.
+export function buildSolids() {
+  const boxes = []
+  for (const w of WINGS) {
+    const h = w.floors * FH
+    boxes.push({
+      cx: (w.x0 + w.x1) / 2,
+      cy: h / 2,
+      cz: (w.z0 + w.z1) / 2,
+      w: w.x1 - w.x0,
+      h,
+      d: w.z1 - w.z0,
+    })
+  }
+  // podium
+  const P = { x0: -2.15, x1: 2.0, z0: -1.35, z1: 1.55 }
+  const ph = FH * 1.6
+  boxes.push({
+    cx: (P.x0 + P.x1) / 2,
+    cy: ph / 2,
+    cz: (P.z0 + P.z1) / 2,
+    w: P.x1 - P.x0,
+    h: ph,
+    d: P.z1 - P.z0,
+  })
+  return boxes
+}
+
 // wider street grid for the hero city
 export function buildCityGround() {
   const gpos = []
