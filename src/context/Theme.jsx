@@ -52,7 +52,7 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('ink')
+  const [theme, setTheme] = useState('paper')
 
   const toggle = useCallback(() => {
     setTheme((t) => NEXT_THEME[t] || ORDER[0])
